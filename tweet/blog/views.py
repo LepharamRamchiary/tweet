@@ -58,8 +58,8 @@ def register(request):
             user = form.save(commit=False)
             user.set_password(form.cleaned_data['password1'])
             user.save()
-            login(request, user)
-            return redirect('tweet_list')
+            # login(request, user)
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'registration/register.html', {'form': form})

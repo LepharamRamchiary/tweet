@@ -1,14 +1,22 @@
 {% extends "layout.html" %}
 
-{% block title %}Tweet{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
-<h2>Register Form</h2>
-<form method='post' >
-    {% csrf_token %}
-    {{form.as_p}} 
-    <button class='btn btn-primary'>Register</button>
-</form>
-<p>Already an account? <a href="{% url 'login' %}">Login here</a></p>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-sm-10">
+            <h2 class="text-center mb-4">Register Form</h2>
+            <form method="post" class="p-4 border rounded shadow-sm">
+                {% csrf_token %}
+                <!-- Render form with 'as_p' for labels and inputs -->
+                {{ form.as_p }}
+                <button class="btn btn-primary w-100">Register</button>
+            </form>
+            <p class="text-center mt-3">
+                Already have an account? <a href="{% url 'login' %}">Login here</a>
+            </p>
+        </div>
+    </div>
+</div>
 {% endblock %}
-

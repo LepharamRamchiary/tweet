@@ -1,25 +1,30 @@
-{% extends "layout.html" %} 
-{% block title %}Tweet{% endblock %} 
+{% extends "layout.html" %}
+
 {% block content %}
-<h1 class="text-center mt-4">Welcom to All Tweets</h1>
+<h1 class="text-center mt-4">Welcome to All Tweets</h1>
 
-<a class="btn btn-primary mb-4" href="{% url 'tweet_create'%}">Create a tweet</a>
-<div class="container row gap-3">
-  {% for tweet in tweets %}
-  <div class="card" style="width: 18rem">
-    <img src="{{tweet.photo.url}}" class="card-img-top py-2" alt="..." />
-    <div class="card-body">
-      <h5 class="card-title">{{tweet.user.username}}</h5>
-      <p class="card-text">{{tweet.text}}</p>
-      {% if tweet.user == user %}
-      <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
-      <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger"
-        >Delete</a
-      >
-      {% endif %}
+<div class="container">
+    <a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}">Create a tweet</a>
+    <div class="row gy-4">
+        {% for tweet in tweets %}
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <div class="card h-100 mx-auto" style="width: 18rem;">
+                {% if tweet.photo %}
+                <img src="{{ tweet.photo.url }}" class="card-img-top p-3" alt="tweet_image" />
+                {% else %}
+                <img src="../media/photos/HOME.png" class="card-img-top p-3" alt="default_image" />
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ tweet.user.username }}</h5>
+                    <p class="card-text">{{ tweet.text }}</p>
+                    {% if tweet.user == user %}
+                    <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
+                    <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
     </div>
-  </div>
-  {% endfor %}
 </div>
-
 {% endblock %}
