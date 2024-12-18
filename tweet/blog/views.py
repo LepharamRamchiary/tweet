@@ -3,6 +3,7 @@ from .models import Tweet
 from .forms import TweetForm, UserRegisterForm
 from django.shortcuts import get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.contrib.auth import login
 
 # Create your views here.
@@ -10,8 +11,18 @@ from django.contrib.auth import login
 def index(request):
     return render(request, "index.html")
 
+# def tweet_list(request):
+#     tweets = Tweet.objects.all().order_by('-created_at')
+#     return render(request, 'tweet_list.html', {'tweets': tweets})
+
 def tweet_list(request):
-    tweets = Tweet.objects.all().order_by('-created_at')
+    username = request.GET.get('username')
+    if username:
+        tweets = Tweet.objects.filter(user__username__icontains=username).order_by('-created_at')
+        if not tweets.exists():
+            messages.info(request, 'No tweets found for that username.')
+    else:
+        tweets = Tweet.objects.all().order_by('-created_at')
     return render(request, 'tweet_list.html', {'tweets': tweets})
 
 @login_required

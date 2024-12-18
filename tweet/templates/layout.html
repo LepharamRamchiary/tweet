@@ -43,17 +43,18 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <div class="d-flex justify-content-between w-100 align-items-center">
             <!-- Search Bar -->
-            <form class="d-flex" role="search">
+            <form class="d-flex" role="search" method="get" action="{% url 'tweet_list' %}">
               <input
                 class="form-control me-2"
                 type="search"
-                placeholder="Search"
+                name="username"
+                placeholder="Search by username"
                 aria-label="Search"
+                value="{{ request.GET.username }}"
               />
-              <button class="btn btn-outline-success" type="submit">
-                Search
-              </button>
+              <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
+
             <!-- Tweet Home Button -->
             <div>
               <a href="{% url 'tweet_list' %}" class="btn btn-primary mx-2">Tweet Home</a>
