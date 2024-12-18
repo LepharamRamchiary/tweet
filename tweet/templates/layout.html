@@ -70,6 +70,16 @@
               Search
             </button>
           </form>
+          <a href="{% url 'tweet_list' %}" class="btn btn-primary mx-2">Tweet Home</a>
+          {% if user.is_authenticated %}
+          <form method='post' action="{% url 'logout'%}">
+            {% csrf_token %}
+            <button class="btn btn-danger" type='submit'>Logout</button>
+          </form>
+          {% else %}
+          <a href="{% url 'login' %}" class="btn btn-success mx-2">Login</a>
+          <a href="{% url 'register' %}" class="btn btn-primary mx-2">Register</a>
+          {% endif %}
         </div>
       </div>
     </nav>
