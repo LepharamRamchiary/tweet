@@ -1,5 +1,4 @@
 from django.db import models
-<<<<<<< HEAD
 from django.contrib.auth.models import User
 
 # Create your models here.
@@ -13,7 +12,4 @@ class Tweet(models.Model):
     
     def __str__(self):
         return f'{self.user.username} - {self.text[:10]}'
-=======
 
-# Create your models here.
->>>>>>> f986d24b3384fc59ae2af744c80d0c8cc2eaf522
