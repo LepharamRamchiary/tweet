@@ -1,0 +1,15 @@
+{% extends "layout.html" %} 
+
+{% block title %}Tweet{% endblock %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center mt-5" style="height: 50vh;">
+    <div 
+        class="jumbotron d-flex flex-column align-items-center justify-content-center text-center text-white w-100" 
+        style="height: 100%; background: linear-gradient(to right, pink, green); border-radius: 100px 0 100px 0; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);">
+        <h1>Welcome to TweetApp</h1>
+        <p>Your one-stop platform to share your thoughts with the world!</p>
+        <a href="{% url 'tweet_create' %}" class="btn btn-light btn-lg">Create a Tweet</a>
+    </div>
+</div>
+{% endblock %}

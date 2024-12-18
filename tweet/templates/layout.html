@@ -13,10 +13,10 @@
     />
     <title>{% block title %}Tweet{% endblock %}</title>
   </head>
-  <body >
+  <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Tweet</a>
+        <a class="navbar-brand" href="{% url 'home' %}">Tweet</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -29,63 +29,38 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-            </li>
-          </ul>
-          <form class="d-flex" role="search">
-            <input
-              class="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button class="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
-          <a href="{% url 'tweet_list' %}" class="btn btn-primary mx-2">Tweet Home</a>
-          {% if user.is_authenticated %}
-          <form method='post' action="{% url 'logout'%}">
-            {% csrf_token %}
-            <button class="btn btn-danger" type='submit'>Logout</button>
-          </form>
-          {% else %}
-          <a href="{% url 'login' %}" class="btn btn-success mx-2">Login</a>
-          <a href="{% url 'register' %}" class="btn btn-primary mx-2">Register</a>
-          {% endif %}
+          <div class="d-flex justify-content-between w-100 align-items-center">
+            <!-- Search Bar -->
+            <form class="d-flex" role="search">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                Search
+              </button>
+            </form>
+            <!-- Tweet Home Button -->
+            <div>
+              <a href="{% url 'tweet_list' %}" class="btn btn-primary mx-2">Tweet Home</a>
+              {% if user.is_authenticated %}
+              <form method="post" action="{% url 'logout' %}" class="d-inline">
+                {% csrf_token %}
+                <button class="btn btn-danger" type="submit">Logout</button>
+              </form>
+              {% else %}
+              <a href="{% url 'login' %}" class="btn btn-success mx-2">Login</a>
+              <a href="{% url 'register' %}" class="btn btn-primary mx-2">Register</a>
+              {% endif %}
+            </div>
+          </div>
         </div>
       </div>
     </nav>
     <div class="container">
-      {% block content %} 
-      
+      {% block content %}
       {% endblock %}
     </div>
   </body>
