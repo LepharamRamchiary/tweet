@@ -1,13 +1,29 @@
 {
-    "builds": [{
-        "src": "tweet/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb", "runtime": "python3.13" }
-    }],
+    "builds": [
+        {
+            "src": "tweet/wsgi.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "15mb",
+                "runtime": "python3.13"
+            }
+        }
+    ],
     "routes": [
+        {
+            "src": "/static/(.*)",
+            "dest": "/static/$1"
+        },
+        {
+            "src": "/media/(.*)",
+            "dest": "/media/$1"
+        },
         {
             "src": "/(.*)",
             "dest": "tweet/wsgi.py"
         }
-    ]
+    ],
+    "functions": {
+        "includeFiles": ["data/db.sqlite3"]
+    }
 }

@@ -79,7 +79,8 @@ WSGI_APPLICATION = 'tweet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
     }
 }
 
@@ -136,3 +137,5 @@ LOGIN_URL = '/accounts/login'
 
 LOGIN_REDIRECT_URL = '/blog/'
 LOGOUT_REDIRECT_URL = '/blog/'
+
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', '=o)2t(ut4#*^r*=v@w4(p(oo)3ydgp#&e9(_qovy)v=qaq-sbu')
